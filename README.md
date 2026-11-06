@@ -27,7 +27,7 @@ Criterios: **criterio TGS** OFF ≤ −1,20 V (línea llena) y **mínimo de prot
 Agregar 5 filas por mes en **RECTIFICADORES** (una por equipo):
 - **Año / Mes** son los del relevamiento ("Periodic Survey"), no los de la fecha de inspección.
 - **Estado** es obligatorio: `E/S`, `F/S` o `Sin acceso`.
-- **Horómetro**: solo números. Vacío si no hay horómetro o está quemado (no escribir X).
+- **Horómetro** (opcional): lectura real, solo números. Vacío si no hay horómetro o no funciona.
 - Sin lectura (sin acceso): dejar vacíos V, A y Horómetro.
 
 El tablero toma como corte el último mes cargado. Si la URL de datos falla, usa la copia embebida y lo indica en el pie.
@@ -37,5 +37,5 @@ Cuando se cierra el relevamiento, exportar el **Test Point Inspection Grid** (Ex
 
 ## Indicadores
 - **Disponibilidad PC**: meses-equipo en servicio / meses-equipo relevados (los meses sin acceso no cuentan).
-- **Funcionamiento (%)**: horas de horómetro entre dos lecturas / horas calendario entre esas fechas.
-- **Criticidad del rectificador**: Alta si está F/S o sin acceso en la última lectura; Media si tuvo ajuste en los últimos 6 meses o no tiene horómetro; Baja en el resto.
+- **Horas de servicio (calc.)**: los equipos no tienen horómetro de origen (es un agregado de O&M tgs). El tablero toma la última lectura real de cada equipo y calcula las horas acumuladas a cada fecha de lectura asumiendo operación continua (24 h/día).
+- **Criticidad del rectificador**: Alta si está F/S o sin acceso en la última lectura; Media si tuvo ajuste de corriente en los últimos 6 meses; Baja en el resto.
