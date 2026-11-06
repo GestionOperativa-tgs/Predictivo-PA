@@ -307,7 +307,7 @@ function prep(raw){
   // funcionamiento % por equipo
   for(const [e] of EQ){const s=R.filter(r=>r.eq===e);let prev=null;
     for(const r of s){r.fun=null;const d=fdate(r.fecha);
-      if(prev&&r.hor!=null&&prev.hor!=null&&d&&prev.d&&r.hor>=prev.hor){const hs=(d-prev.d)/36e5;const p=hs>0?100*(r.hor-prev.hor)/hs:null;if(p!=null&&p<=105)r.fun=Math.min(p,100);else{r.funInc=true;prev=null;continue;}}
+      if(prev&&r.hor!=null&&prev.hor!=null&&d&&prev.d&&r.hor>=prev.hor){const hs=(d-prev.d)/36e5;const p=hs>0?100*(r.hor-prev.hor)/hs:null;if(p!=null&&p<=110)r.fun=Math.min(p,100);else{r.funInc=true;prev=null;continue;}}
       if(r.hor!=null&&d)prev={hor:r.hor,d};else if(r.hor==null)prev=null;}}
   // potenciales
   const PO=window.POTENCIALES||{};P={};
