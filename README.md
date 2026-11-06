@@ -5,7 +5,7 @@ Tablero web (GitHub Pages) del seguimiento predictivo de la protección catódic
 - **Relevamiento mensual de rectificadores** (GPM-001 a GPM-005), desde enero 2025. Se carga en Google Sheets.
 - **Relevamiento anual de potenciales** (Test Point Inspection), 2025 y 2026. Se guarda en el repositorio.
 
-Criterios: **criterio TGS** OFF ≤ −1,20 V (línea llena) y **mínimo de protección** OFF ≤ −0,85 V (línea punteada, NACE/AMPP SP0169).
+Criterio: **rango de protección** con potencial OFF vs Cu/CuSO₄ entre **−0,85 V** (mínimo de protección, NACE/AMPP SP0169 e ISO 15589-1; línea punteada) y **−1,20 V** (límite de sobreprotección de ISO 15589-1 para acero X70; línea llena). Más negativo que −1,20 V = sobreprotección; menos negativo que −0,85 V = subprotección. Criterio provisorio hasta contar con el procedimiento oficial de TGS: los valores están en `LIM_SOB` y `CRIT_MIN` dentro de `index.html`.
 
 ## Archivos
 - `index.html`: el tablero, en un solo archivo. Trae una copia embebida de los datos mensuales como respaldo.
