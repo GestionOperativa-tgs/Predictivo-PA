@@ -297,10 +297,12 @@ async function cargar(){
 }
 
 let BASEH={},R=[],EQ=EQ_DEF,HAL=[],P={},K0,K1,eqSel="GPM-001",rango="all",potV="2026",zona=0,ptsF="tgs",ptsY="2026";
+/* Los comentarios de campo sobre horómetros no se muestran (dato agregado por O&M tgs, no original de los equipos) */
+function sinHorometro(s){return String(s||"").split(/(?<=\.)\s+/).filter(x=>!/hor[oó]metro/i.test(x)).join(" ").trim();}
 function prep(raw){
   R=objs(raw.RECTIFICADORES).map(o=>{const y=+num(o["Año"]),m=+num(o["Mes"]);return{y,m,k:y*12+m-1,fecha:fecha(o["Fecha"]),eq:String(o["Rectificador"]).trim(),
     vf:num(o["V Found"]),af:num(o["A Found"]),adj:/^s/i.test(String(o["Ajustado"]||"")),vl:num(o["V Left"]),al:num(o["A Left"]),hor:num(o["Horómetro"]),
-    est:String(o["Estado"]||"").trim()||"E/S",obs:String(o["Observaciones"]||"").trim()};}).filter(r=>r.y&&r.m&&r.eq);
+    est:String(o["Estado"]||"").trim()||"E/S",obs:sinHorometro(o["Observaciones"])};}).filter(r=>r.y&&r.m&&r.eq);
   R.sort((a,b)=>a.k-b.k||a.eq.localeCompare(b.eq));
   HAL=objs(raw.HALLAZGOS);
   K0=Math.min(...R.map(r=>r.k));K1=Math.max(...R.map(r=>r.k));
