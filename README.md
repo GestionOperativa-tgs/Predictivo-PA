@@ -5,7 +5,17 @@ Tablero web (GitHub Pages) del seguimiento predictivo de la protección catódic
 - **Relevamiento mensual de rectificadores** (GPM-001 a GPM-005), desde enero 2025. Se carga en Google Sheets.
 - **Relevamiento anual de potenciales** (Test Point Inspection), 2025 y 2026. Se guarda en el repositorio.
 
-Criterio: potencial OFF vs Cu/CuSO₄ **igual o más negativo que −0,85 V** (NACE/AMPP SP0169 · ISO 15589-1), línea punteada. Solo se alertan los puntos que no llegan a ese valor; los valores más negativos no generan alerta. Se muestra el margen de cada punto sobre −0,85 V. Criterio provisorio hasta contar con el procedimiento oficial de TGS (constante `CRIT_MIN` en `index.html`).
+Criterio de aceptación tgs: potencial OFF vs Cu/CuSO₄ **igual o más negativo que −850 mV** (NACE/AMPP SP0169 · ISO 15589-1). El ente no fija criterio de sobreprotección, así que los valores más negativos no se alertan.
+
+Como el criterio tgs es más exigente que el de 100 mV de polarización (natural +100 ≈ −650 mV), un punto que no llega a −850 mV queda compensado normativamente: el tablero lo muestra como **alerta**, no como incumplimiento.
+
+| OFF medido | Condición |
+|---|---|
+| ≤ −850 mV | Cumple criterio tgs |
+| −850 a −650 mV | Alerta (cubierto por criterio 100 mV) |
+| > −650 mV | Alerta alta: verificar 100 mV con el potencial natural del punto |
+
+Constantes en `index.html`: `CRIT_MIN = -0.85` (criterio tgs) y `CRIT_REF = -0.65` (referencia natural +100).
 
 ## Archivos
 - `index.html`: el tablero, en un solo archivo. Trae una copia embebida de los datos mensuales como respaldo.
